@@ -8,20 +8,25 @@
 // var welcomeMsg = "welcome dear " + username; 
 // alert(welcomeMsg);
 
+var url = "https://api.funtranslations.com/translate/minion.json"
+var box1 = document.querySelector("#box1")
+var box2 = document.querySelector("#box2")
+
 
 var btnTranslate = document.querySelector("#btnTranslate")
 btnTranslate.addEventListener("click", function() {
-    console.log("Clicked")
-    console.log("Input", box1.value);
-    box2.innerText = "Sorry, we are closed!" + box1.value;
+    var userInput = box1.value;
+    fetch(url + "?text=" + userInput).then(function (response){
+        return response.json()
+    }).then(function (data){
+        console.log(data);
+        box2.textContent = data.contents.translated;
+    })
+    
 })
 
-var box1 = document.querySelector("#box1")
-console.log(box1)
 
-var box2 = document.querySelector("#box2")
-   
-    //  box2.innerText = "Sorry, we are closed!"
+
 
 
 
